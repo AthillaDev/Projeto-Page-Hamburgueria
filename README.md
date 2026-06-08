@@ -1,8 +1,11 @@
 # 🍔 Burger Forge ⚒️
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 Uma aplicação web desenvolvida para praticar os principais métodos de manipulação de arrays em JavaScript: ForEach, Map, Filter e Reduce,
 além da construção de uma interface responsiva utilizando Flexbox, CSS Grid e Glassmorphism.
-<br/>
+<br>
 
 ## 🚀 Demonstração
 
@@ -11,7 +14,7 @@ https://seu-link-vercel.app
 
 ## 📸 Preview
 
-![Preview](./img/preview.png)
+<img src"https://github.com/AthillaDev/Projeto-Page-Hamburgueria/blob/main/img/IMG-Bruger-Forge.png?raw=true" />
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -90,4 +93,4 @@ Athilla Cruz
 https://github.com/AthillaDev
 
 🔗 LinkedIn:
-(seu linkedin)
+[linkedin.com/in/athillacruz](https://www.linkedin.com/in/athillacruz/)
