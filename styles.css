@@ -24,10 +24,34 @@ Se fizer esses passos, o projeto deixa de ser um exercício de JavaScript e vira
 }
 
 :root{
+    /* ===== CORES PRINCIPAIS ===== */
     --bg-color: #000;
+    --bg-dark: #111;
     --primary: #70cb15;
     --secondary: #8133ff;
     --text: #fff;
+    
+    /* ===== CORES SECUNDÁRIAS ===== */
+    --text-dark: #333;
+    --text-gray: #ccc;
+    --success: #4caf50;
+    --danger: #d32f2f;
+    --danger-light: #ff5252;
+    
+    /* ===== CORES DE FUNDO (TRANSPARENTES) ===== */
+    --glass-light: rgba(255, 255, 255, 0.1);
+    --glass-lighter: rgba(255, 255, 255, 0.08);
+    --glass-lightest: rgba(255, 255, 255, 0.05);
+    --border-light: rgba(255, 255, 255, 0.15);
+    --border-lighter: rgba(255, 255, 255, 0.08);
+    --shine: rgba(255, 255, 255, 0.3);
+    
+    /* ===== CORES DE SUCESSO/VEGANO ===== */
+    --vegan-bg: #e8f5e9;
+    --vegan-text: #4caf50;
+    
+    /* ===== CORES DE NEUTRO ===== */
+    --neutral-light: #f0f0f0;
 }
 
 body  {
@@ -69,9 +93,9 @@ header p {
 button {
     width: 150px;
     padding: 10px 20px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--border-light);
     border-radius: 12px;
-    background: rgba(255,255,255,0.1);
+    background: var(--glass-light);
     backdrop-filter: blur(10px);
     color: var(--text);
     font-weight: 700;
@@ -110,7 +134,7 @@ button::before {
         linear-gradient(
             120deg,
             transparent,
-            rgba(255,255,255,.3),
+            var(--shine),
             transparent
         );
 
@@ -134,9 +158,9 @@ button:hover::before {
 }
 
 .card {
-    background: rgba(255,255,255,0.08);
+    background: var(--glass-lighter);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 20px;
     transition:
@@ -188,7 +212,7 @@ figure {
 }
 
 .total-card {
-    background: #f0f0f0;
+    background: var(--neutral-light);
     padding: 20px;
     text-align: center;
 }
@@ -196,17 +220,17 @@ figure {
 .total-title {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-dark);
 }
 
 .total-info {
     margin: 10px 0;
     font-size: 14px;
-    color: #333;
+    color: var(--text-dark);
 }
 
 .total-price {
-    color: #d32f2f;
+    color: var(--danger);
     font-size: 18px;
     font-weight: bold;
 }
@@ -219,7 +243,7 @@ figure {
 
 .total-saving-box {
     margin-top: 15px;
-    background: #e8f5e9;
+    background: var(--vegan-bg);
     padding: 10px;
     border-radius: 8px;
 }
@@ -231,7 +255,7 @@ figure {
 }
 
 .vegan-label {
-    color: #4caf50;
+    color: var(--success);
     font-size: 12px;
     margin-top: 5px;
     font-weight: bold;
@@ -251,10 +275,10 @@ figure {
 .total-card {
     grid-column: 1 / -1;
 
-    background: rgba(255,255,255,.08);
+    background: var(--glass-lighter);
     backdrop-filter: blur(12px);
 
-    border: 1px solid rgba(255,255,255,.15);
+    border: 1px solid var(--border-light);
 
     border-radius: 20px;
 
@@ -286,9 +310,9 @@ figure {
 }
 
 .total-box {
-    background: rgba(255,255,255,.05);
+    background: var(--glass-lightest);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border: 1px solid var(--border-lighter);
 
     border-radius: 15px;
 
@@ -298,7 +322,7 @@ figure {
 }
 
 .total-box h3 {
-    color: #ccc;
+    color: var(--text-gray);
 
     font-size: .9rem;
 
@@ -312,7 +336,7 @@ figure {
 }
 
 .total-value-red {
-    color: #ff5252;
+    color: var(--danger-light);
 }
 
 .total-value-green {
@@ -352,7 +376,7 @@ figure {
 }
 
 .discount-label {
-    color: #70cb15;
+    color: var(--primary);
 
     font-weight: bold;
 
