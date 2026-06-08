@@ -1,0 +1,576 @@
+/*
+Projeto Evolução nível portfólio
+
+Depois que terminar a versão do curso:
+
+--> Adicionar carrinho de compras
+--> Adicionar busca por nome
+--> Adicionar categorias
+--> Salvar dados no LocalStorage
+--> Consumir uma API de hambúrgueres
+--> Criar versão Full Stack com Node.js
+
+Se fizer esses passos, o projeto deixa de ser um exercício de JavaScript e vira um projeto que realmente chama atenção no GitHub e LinkedIn.
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;0,800;1,300;1,600;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root{
+    --bg-color: #000;
+    --primary: #70cb15;
+    --secondary: #8133ff;
+    --text: #fff;
+}
+
+body  {
+    background:
+        radial-gradient(circle at top left, #70cb15, transparent 30%),
+        radial-gradient(circle at bottom right, #8133ff, transparent 30%),
+        #111;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+header h1 {
+    color: var(--primary);
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+header p {
+    color: var(--text);
+}
+
+.container-buttons{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+button {
+    width: 150px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+    transition:  0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--primary);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(112,203,21,.5);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+    box-shadow: 0 0 15px rgba(112,203,21,.5);
+}
+
+button::before {
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.3),
+            transparent
+        );
+
+    transition: .5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+.btn-map:hover {
+    animation: pulse .6s infinite;
+}
+
+.menu-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
+    gap: 25px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 20px;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(112,203,21,.6),
+        0 0 40px rgba(112,203,21,.4),
+        0 0 60px rgba(112,203,21,.2);
+}
+
+img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card img {
+    transition: .4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.08);
+}
+
+figure {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.card h2 {
+    color: var(--text);
+    text-align: center;
+    margin: 15px 0;
+}
+
+.item-price {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.total-card {
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+.total-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.total-info {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.total-price {
+    color: #d32f2f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.total-price-discount {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.total-saving-box {
+    margin-top: 15px;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.total-saving {
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.vegan-label {
+    color: #4caf50;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: var(--text);
+}
+
+.empty-message h2 {
+    font-size: 1.5rem;
+}
+
+.total-card {
+    grid-column: 1 / -1;
+
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    animation: zoomIn .5s ease;
+}
+
+.total-title {
+    text-align: center;
+
+    color: var(--primary);
+
+    font-size: 2rem;
+
+    margin-bottom: 25px;
+}
+
+.total-grid {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 15px;
+}
+
+.total-box {
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.total-box h3 {
+    color: #ccc;
+
+    font-size: .9rem;
+
+    margin-bottom: 10px;
+}
+
+.total-value {
+    font-size: 1.5rem;
+
+    font-weight: 700;
+}
+
+.total-value-red {
+    color: #ff5252;
+}
+
+.total-value-green {
+    color: var(--primary);
+}
+
+.savings-box {
+    margin-top: 20px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(112,203,21,.25),
+        rgba(112,203,21,.05)
+    );
+
+    border: 1px solid rgba(112,203,21,.4);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.savings-box h3 {
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+.savings-value {
+    color: var(--primary);
+
+    font-size: 2rem;
+
+    font-weight: 800;
+}
+
+.discount-label {
+    color: #70cb15;
+
+    font-weight: bold;
+
+    animation: blink .8s infinite alternate;
+}
+
+@keyframes blink {
+
+    from {
+        opacity: .5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+header {
+    animation: slideDown .8s ease;
+}
+
+header h1 {
+    letter-spacing: 2px;
+}
+
+@keyframes slideDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header h1 {
+    animation:
+        slideDown .8s ease,
+        floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.total-card {
+    animation: zoomIn .5s ease;
+}
+
+@keyframes zoomIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn .6s ease forwards;
+    opacity: 0;
+}
+
+
+
+/* ===================================================
+   RESPONSIVIDADE - MOBILE E TABLETS
+   =================================================== */
+
+/* Tablets (481px a 768px) */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .container-buttons {
+        margin: 20px 0;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    button {
+        width: 120px;
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+
+    .menu-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    img {
+        height: 200px;
+    }
+
+    .card h2 {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+
+    .item-price {
+        font-size: 1rem;
+    }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    header {
+        margin: 20px 0;
+    }
+
+    header h1 {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+    }
+
+    header p {
+        font-size: 0.8rem;
+    }
+
+    .container-buttons {
+        margin: 15px 0;
+        gap: 8px;
+        padding: 0;
+        flex-wrap: wrap;
+    }
+
+    button {
+        width: 100px;
+        padding: 6px 10px;
+        font-size: 9px;
+        border-radius: 8px;
+    }
+
+    .menu-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card {
+        padding: 12px;
+        border-radius: 15px;
+    }
+
+    img {
+        height: 150px;
+    }
+
+    .card h2 {
+        font-size: 0.9rem;
+        margin: 8px 0;
+    }
+
+    .item-price {
+        font-size: 0.9rem;
+    }
+}
+
